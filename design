@@ -1,0 +1,43 @@
+获取树形结构 http://data.stats.gov.cn/easyquery.htm
+post data: id=zb&dbcode=fsjd&wdcode=zb&m=getTree
+
+id	A01
+dbcode	hgnd
+wdcode	zb
+m	getTree
+
+按id和dbcode划分
+id 表示顶层指标(id=zb)或者中间指标（id=A01...）
+dbcode 表示各种类型的统计数据，如年度数据(hgnd)，分省年度数据(fsnd), 分省季度数据(fsjd)
+
+返回数据结构:json
+{"dbcode":"fsjd","id":"A01","isParent":true,"name":"国民经济核算","pid":"","wdcode":"zb"}
+
+获取指标数据
+http://data.stats.gov.cn/easyquery.htm?m=QueryData&
+dbcode=hgnd&rowcode=zb&colcode=sj&wds=%5B%5D&dfwds=%5B%7B%22wdcode%22%3A%22zb%22%2C%22valuecode%22%3A%22A010302%22%7D%5D&k1=1505096843607
+
+
+根据类型拼接url参数
+全国年度：
+colcode  sj
+dbcode   hgnd
+dfwds    [{"wdcode":"zb","valuecode":"A010302"}]
+k1       1505096843607          # 从1970年到现在的秒数 time.time()
+m        QueryData
+rowcode  zb
+wds      []
+
+分省年度：
+colcode  sj
+dbcode   fsnd
+dfwds    [{"wdcode":"zb","valuecode":"A0203"}]
+k1       1505096843607
+m        QueryData
+rowcode  zb
+wds      [{"wdcode":"reg","valuecode":"110000"}]
+
+返回的数据包括两部分：明细指标名称(dim)和对应的指标值(fact)。全国和分省的又有不同，分省数据的fact部分json包括3块，全国数据的只包括两块
+
+中英文切换
+
