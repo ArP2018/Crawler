@@ -1,8 +1,8 @@
 #encoding:utf-8
-DB_HOST = '10.13.1.76'
-DB_NAME = 'scp'
-DB_USER_NAME = 'webcrawler'
-PASSWORD = 'fd909d69c7b164406f59'
+DB_HOST = '10.13.*.*'
+DB_NAME = '***'
+DB_USER_NAME = '***'
+PASSWORD = '***'
 
 INSERT_ZB_SQL = 'INSERT INTO scp.NDS_PAR_INDEX(index_id, index_name, parent_index_id, parent_index_name, status, creat_time, update_time, unit)' \
                     ' VALUES("%s", "%s", "%s", "%s", "active", "%s", "%s", "%s")'
